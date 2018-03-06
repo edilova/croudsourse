@@ -1,0 +1,32 @@
+[
+    {
+        "name":"id",
+        "dbType":"increments",
+        "htmlType":"",
+        "validations":"",
+        "searchable":false,
+        "fillable":false,
+        "primary":true,
+        "inForm": false,
+        "inIndex":false
+    },
+    {
+        "name": "post_id",
+        "dbType": "integer:unsigned:default,0:foreign,posts,id",
+        "htmlType": "text",
+        "relation": "mt1,Post,post_id,id"
+    },
+    {
+        "name": "user_id",
+        "dbType": "integer:unsigned:default,0:foreign,users,id",
+        "htmlType": "text",
+        "relation": "mt1,User,user_id,id"
+    },
+    {
+        "name":"content",
+        "dbType":"string",
+        "htmlType":"text",
+        "validations":"required",
+        "searchable":true
+    }
+]
