@@ -43,6 +43,11 @@
 
             .content {
                 text-align: center;
+                display:flex;
+                width:90%;
+            }
+            textarea{
+                width:90%;
             }
 
             .title {
@@ -62,6 +67,16 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+            .content div{
+                border:1px solid red;
+            }
+            .form_block{
+                width:50%;
+            }
+            .questions_block{
+                width:50%;
+                text-align: left;
+            }
         </style>
     </head>
     <body>
@@ -69,7 +84,14 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        @if (Auth::user()->anonymous)
+                            Аноним # {{ Auth::user()->id }}
+                            <a href="{{ route('login') }}">Системаға кір</a> | 
+                            <a href="{{ route('register') }}">Тіркел</a>
+                        @else
+                            {{ Auth::user()->name }}
+                            <a href="{{ route('logout') }}">Шығу</a>
+                        @endif
                     @else
                         <a href="{{ route('login') }}">Login</a>
                         <a href="{{ route('register') }}">Register</a>
@@ -78,21 +100,28 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
+                <div class="form_block">
                     {!! Form::open(['route' => 'posts.store']) !!}
                         <textarea name="content" style="width:100%;height:400px;"></textarea>
                         {!! Form::submit('Текстті жібер') !!}
                     {!! Form::close() !!}
                 </div>
+                <div class="questions_block">
+                    @foreach ($posts as $post)
+                        <div><a href="{{ route('posts.show',$post->id) }}">{{ $post->content }}</a></div>
+                        <div>{!!  $post->translations_count !!} түзету бар</div>
+                    @endforeach
+                </div>
 
-                <div class="links">
+            </div>
+
+            <!--<div class="links">
                     <a href="https://laravel.com/docs">Documentation</a>
                     <a href="https://laracasts.com">Laracasts</a>
                     <a href="https://laravel-news.com">News</a>
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
+                </div>-->
         </div>
     </body>
 </html>

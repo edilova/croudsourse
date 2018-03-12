@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\UserDataTable;
-use App\Http\Requests;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Repositories\UserRepository;
-use Flash;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Http\Request;
+use Flash;
+use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
 class UserController extends AppBaseController
@@ -24,12 +24,16 @@ class UserController extends AppBaseController
     /**
      * Display a listing of the User.
      *
-     * @param UserDataTable $userDataTable
+     * @param Request $request
      * @return Response
      */
-    public function index(UserDataTable $userDataTable)
+    public function index(Request $request)
     {
-        return $userDataTable->render('users.index');
+        $this->userRepository->pushCriteria(new RequestCriteria($request));
+        $users = $this->userRepository->all();
+
+        return view('users.index')
+            ->with('users', $users);
     }
 
     /**

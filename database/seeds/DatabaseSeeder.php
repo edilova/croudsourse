@@ -1,5 +1,6 @@
 <?php
 use App\User as User;
+use App\Models\Post as Post;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,6 +18,10 @@ class DatabaseSeeder extends Seeder
             'email'=>'admin@soztekser.kz',
             'password'=>Hash::make('admin'),
             'name'=>'Admin Adminych'
+        ]);
+        Post::create([
+            'content'=>'Жана жылда тагыда Алматыга барамын',
+            'user_id'=>1
         ]);
     }
 }

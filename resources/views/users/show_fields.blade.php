@@ -22,6 +22,12 @@
     <p>{!! $user->password !!}</p>
 </div>
 
+<!-- Anonymous Field -->
+<div class="form-group">
+    {!! Form::label('anonymous', 'Anonymous:') !!}
+    <p>{!! $user->anonymous !!}</p>
+</div>
+
 <!-- Remember Token Field -->
 <div class="form-group">
     {!! Form::label('remember_token', 'Remember Token:') !!}
@@ -38,5 +44,11 @@
 <div class="form-group">
     {!! Form::label('updated_at', 'Updated At:') !!}
     <p>{!! $user->updated_at !!}</p>
+</div>
+
+<!-- Deleted At Field -->
+<div class="form-group">
+    {!! Form::label('deleted_at', 'Deleted At:') !!}
+    <p>{!! $user->deleted_at !!}</p>
 </div>
 

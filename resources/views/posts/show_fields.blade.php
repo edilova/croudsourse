@@ -1,30 +1,19 @@
-<!-- Id Field -->
-<div class="form-group">
-    {!! Form::label('id', 'Id:') !!}
-    <p>{!! $post->id !!}</p>
+@include('flash::message')
+<div>
+    Жарияланды:<span>{!! $post->created_at !!}</span>
+    Автор:<span>{{ $post->user->display() }}</span>
 </div>
-
 <!-- Content Field -->
-<div class="form-group">
-    {!! Form::label('content', 'Content:') !!}
+<div>
     <p>{!! $post->content !!}</p>
 </div>
-
-<!-- User Id Field -->
-<div class="form-group">
-    {!! Form::label('user_id', 'User Id:') !!}
-    <p>{!! $post->user_id !!}</p>
-</div>
-
-<!-- Created At Field -->
-<div class="form-group">
-    {!! Form::label('created_at', 'Created At:') !!}
-    <p>{!! $post->created_at !!}</p>
-</div>
-
-<!-- Updated At Field -->
-<div class="form-group">
-    {!! Form::label('updated_at', 'Updated At:') !!}
-    <p>{!! $post->updated_at !!}</p>
-</div>
-
+{!! Form::open(['route'=>'translations.store']) !!}
+    <div>Дұрыста:</div>
+    {!! Form::textarea('content',$post->content) !!}
+    {!! Form::hidden('post_id',$post->id) !!}
+    <div>{!! Form::submit('Сақта') !!}</div>
+{!! Form::close() !!}
+@foreach ($post->translations as $translation)
+    <div>{{ $translation->user->display() }}</div>
+    <div>{{ $translation->content }}</div>
+@endforeach

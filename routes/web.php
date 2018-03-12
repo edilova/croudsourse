@@ -11,9 +11,10 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
+Route::get('/','HomeController@index');
 
 
 Auth::routes();
@@ -27,3 +28,9 @@ Route::resource('users', 'UserController');
 
 
 Route::resource('posts', 'PostController');
+
+
+
+Route::resource('translations', 'TranslationController');
+
+Route::resource('users', 'UserController');

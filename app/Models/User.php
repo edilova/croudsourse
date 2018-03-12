@@ -8,12 +8,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class User
  * @package App\Models
- * @version March 3, 2018, 10:18 am UTC
+ * @version March 12, 2018, 5:31 pm UTC
  *
  * @property \Illuminate\Database\Eloquent\Collection Post
+ * @property \Illuminate\Database\Eloquent\Collection Translation
  * @property string name
  * @property string email
  * @property string password
+ * @property boolean anonymous
  * @property string remember_token
  */
 class User extends Model
@@ -33,6 +35,7 @@ class User extends Model
         'name',
         'email',
         'password',
+        'anonymous',
         'remember_token'
     ];
 
@@ -46,6 +49,7 @@ class User extends Model
         'name' => 'string',
         'email' => 'string',
         'password' => 'string',
+        'anonymous' => 'boolean',
         'remember_token' => 'string'
     ];
 
@@ -64,5 +68,13 @@ class User extends Model
     public function posts()
     {
         return $this->hasMany(\App\Models\Post::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function translations()
+    {
+        return $this->hasMany(\App\Models\Translation::class);
     }
 }

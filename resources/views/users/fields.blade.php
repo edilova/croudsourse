@@ -16,6 +16,15 @@
     {!! Form::password('password', ['class' => 'form-control']) !!}
 </div>
 
+<!-- Anonymous Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('anonymous', 'Anonymous:') !!}
+    <label class="checkbox-inline">
+        {!! Form::hidden('anonymous', false) !!}
+        {!! Form::checkbox('anonymous', '1', null) !!} 1
+    </label>
+</div>
+
 <!-- Remember Token Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('remember_token', 'Remember Token:') !!}
