@@ -77,4 +77,12 @@ class User extends Model
     {
         return $this->hasMany(\App\Models\Translation::class);
     }
+    public function display(){
+        if ($this->anonymous){
+            return "Аноним #".$this->id;
+        }
+        else{
+            return $this->name;
+        }
+    }
 }
