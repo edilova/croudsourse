@@ -34,4 +34,7 @@ class UserRepository extends BaseRepository
     {
         return User::class;
     }
+    public function all($columns = array()){
+        return User::withCount(['posts','translations'])->get();
+    }
 }

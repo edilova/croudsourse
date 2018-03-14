@@ -2,7 +2,8 @@
     <thead>
         <tr>
         <th>User</th>
-        <th>Anonymous</th>
+        <th>Posts</th>
+        <th>Corrections</th>
         <th colspan="3">Action</th>
         </tr>
     </thead>
@@ -10,14 +11,14 @@
     @foreach($users as $user)
         <tr>
             <td>
-                {{ $user->display}}
                 @if ($user->anonymous)
-                    {!! $user->display !!}
+                    {!! $user->display() !!}
                 @else
                     {!! $user->name !!} {!! $user->email !!}
                 @endif
             </td>
-            <td>{!! $user->anonymous !!}</td>
+            <td> {!! $user->posts_count !!}</td>
+            <td> {!! $user->translations_count !!}</td>
             <td>
                 {!! Form::open(['route' => ['users.destroy', $user->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
