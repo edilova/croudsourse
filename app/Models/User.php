@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use App\Role as Role;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 

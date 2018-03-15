@@ -1,6 +1,7 @@
 <?php
-use App\User as User;
+use App\Models\User as User;
 use App\Models\Post as Post;
+use App\Role as Role;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder

@@ -34,3 +34,6 @@ Route::resource('posts', 'PostController');
 Route::resource('translations', 'TranslationController');
 
 Route::resource('users', 'UserController');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
