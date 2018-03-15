@@ -85,4 +85,7 @@ class User extends Model
             return $this->name;
         }
     }
+    public function roles(){
+        return $this->belongsToMany(Role::class);
+    }
 }
