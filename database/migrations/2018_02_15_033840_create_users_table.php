@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password')->nullable();
             $table->rememberToken();
             $table->boolean('anonymous')->default(false);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
