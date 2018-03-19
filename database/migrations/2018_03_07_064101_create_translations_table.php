@@ -17,7 +17,7 @@ class CreateTranslationsTable extends Migration
             $table->increments('id');
             $table->integer('post_id')->unsigned()->default(0);
             $table->integer('user_id')->unsigned()->default(0);
-            $table->string('content');
+            $table->text('content');
             $table->softDeletes();
             $table->foreign('post_id')->references('id')->on('posts');
             $table->foreign('user_id')->references('id')->on('users');

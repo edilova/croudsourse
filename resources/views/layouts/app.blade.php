@@ -41,16 +41,27 @@
   <body>
 	<nav class="navbar navbar-default">
 	  <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">
-          <img alt="Brand" src="...">
-        </a>
-      </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Аудару <span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="{{ route('home') }}">Аудару <span class="sr-only">(current)</span></a></li>
           <li><a href="#">Link</a></li>
         </ul>
+
+        <div class="nav navbar-right">
+            @auth
+                @if (Auth::user()->anonymous)
+                    Аноним # {{ Auth::user()->id }}
+                    <a href="{{ route('login') }}">Системаға кір</a> | 
+                    <a href="{{ route('register') }}">Тіркел</a>
+                @else
+                    {{ Auth::user()->name }}
+                    <a href="{{ route('logout') }}">Шығу</a>
+                @endif
+            @else
+                <a href="{{ route('login') }}">Login</a>
+                <a href="{{ route('register') }}">Register</a>
+            @endauth
+        </div>
       </div>
 	  </div>
   </nav>
