@@ -41,10 +41,12 @@
             
             {!! Form::open(['route'=>'translations.store']) !!}
                 <div><h3>Текссті дұрыста:</h3></div>
+                <div id="corrector_field"></div>
                 {!! Form::textarea('content',$post->content) !!}
                 {!! Form::hidden('post_id',$post->id) !!}
                 <div>{!! Form::submit('Сақта') !!}</div>
             {!! Form::close() !!}
         </div>
     </div>
+    <script src="{{ asset('js/app.js') }}"></script>
 @endsection

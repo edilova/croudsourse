@@ -14059,7 +14059,6 @@ module.exports = __webpack_require__(58);
  * includes React and other helpers. It's a great starting point while
  * building robust, powerful web applications using React + Laravel.
  */
-
 __webpack_require__(19);
 
 /**
@@ -36263,16 +36262,16 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var Example = function (_Component) {
-    _inherits(Example, _Component);
+var CorrectorField = function (_Component) {
+    _inherits(CorrectorField, _Component);
 
-    function Example() {
-        _classCallCheck(this, Example);
+    function CorrectorField() {
+        _classCallCheck(this, CorrectorField);
 
-        return _possibleConstructorReturn(this, (Example.__proto__ || Object.getPrototypeOf(Example)).apply(this, arguments));
+        return _possibleConstructorReturn(this, (CorrectorField.__proto__ || Object.getPrototypeOf(CorrectorField)).apply(this, arguments));
     }
 
-    _createClass(Example, [{
+    _createClass(CorrectorField, [{
         key: 'render',
         value: function render() {
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -36304,14 +36303,14 @@ var Example = function (_Component) {
         }
     }]);
 
-    return Example;
+    return CorrectorField;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (Example);
+/* harmony default export */ __webpack_exports__["default"] = (CorrectorField);
 
 
-if (document.getElementById('example')) {
-    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Example, null), document.getElementById('example'));
+if (document.getElementById('corrector_field')) {
+    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(CorrectorField, null), document.getElementById('corrector_field'));
 }
 
 /***/ }),
@@ -54836,7 +54835,7 @@ module.exports = camelize;
 /* 58 */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed: ModuleBuildError: Module build failed: Error: Missing binding /var/www/html/croudchecking/node_modules/node-sass/vendor/linux-x64-51/binding.node\nNode Sass could not find a binding for your current environment: Linux 64-bit with Node.js 7.x\n\nFound bindings for the following environments:\n  - Linux 64-bit with Node.js 4.x\n\nThis usually happens because your environment has changed since running `npm install`.\nRun `npm rebuild node-sass --force` to build the binding for your current environment.\n    at module.exports (/var/www/html/croudchecking/node_modules/node-sass/lib/binding.js:15:13)\n    at Object.<anonymous> (/var/www/html/croudchecking/node_modules/node-sass/lib/index.js:14:35)\n    at Module._compile (module.js:571:32)\n    at Object.Module._extensions..js (module.js:580:10)\n    at Module.load (module.js:488:32)\n    at tryModuleLoad (module.js:447:12)\n    at Function.Module._load (module.js:439:3)\n    at Module.require (module.js:498:17)\n    at require (internal/module.js:20:19)\n    at Object.<anonymous> (/var/www/html/croudchecking/node_modules/sass-loader/lib/loader.js:3:14)\n    at Module._compile (module.js:571:32)\n    at Object.Module._extensions..js (module.js:580:10)\n    at Module.load (module.js:488:32)\n    at tryModuleLoad (module.js:447:12)\n    at Function.Module._load (module.js:439:3)\n    at Module.require (module.js:498:17)\n    at require (internal/module.js:20:19)\n    at loadLoader (/var/www/html/croudchecking/node_modules/loader-runner/lib/loadLoader.js:13:17)\n    at iteratePitchingLoaders (/var/www/html/croudchecking/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (/var/www/html/croudchecking/node_modules/loader-runner/lib/LoaderRunner.js:165:10)\n    at /var/www/html/croudchecking/node_modules/loader-runner/lib/LoaderRunner.js:173:18\n    at loadLoader (/var/www/html/croudchecking/node_modules/loader-runner/lib/loadLoader.js:36:3)\n    at iteratePitchingLoaders (/var/www/html/croudchecking/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (/var/www/html/croudchecking/node_modules/loader-runner/lib/LoaderRunner.js:165:10)\n    at /var/www/html/croudchecking/node_modules/loader-runner/lib/LoaderRunner.js:173:18\n    at loadLoader (/var/www/html/croudchecking/node_modules/loader-runner/lib/loadLoader.js:36:3)\n    at iteratePitchingLoaders (/var/www/html/croudchecking/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (/var/www/html/croudchecking/node_modules/loader-runner/lib/LoaderRunner.js:165:10)\n    at /var/www/html/croudchecking/node_modules/loader-runner/lib/LoaderRunner.js:173:18\n    at loadLoader (/var/www/html/croudchecking/node_modules/loader-runner/lib/loadLoader.js:36:3)\n    at runLoaders (/var/www/html/croudchecking/node_modules/webpack/lib/NormalModule.js:195:19)\n    at /var/www/html/croudchecking/node_modules/loader-runner/lib/LoaderRunner.js:364:11\n    at /var/www/html/croudchecking/node_modules/loader-runner/lib/LoaderRunner.js:170:18\n    at loadLoader (/var/www/html/croudchecking/node_modules/loader-runner/lib/loadLoader.js:27:11)\n    at iteratePitchingLoaders (/var/www/html/croudchecking/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (/var/www/html/croudchecking/node_modules/loader-runner/lib/LoaderRunner.js:165:10)\n    at /var/www/html/croudchecking/node_modules/loader-runner/lib/LoaderRunner.js:173:18\n    at loadLoader (/var/www/html/croudchecking/node_modules/loader-runner/lib/loadLoader.js:36:3)\n    at iteratePitchingLoaders (/var/www/html/croudchecking/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (/var/www/html/croudchecking/node_modules/loader-runner/lib/LoaderRunner.js:165:10)\n    at /var/www/html/croudchecking/node_modules/loader-runner/lib/LoaderRunner.js:173:18\n    at loadLoader (/var/www/html/croudchecking/node_modules/loader-runner/lib/loadLoader.js:36:3)\n    at iteratePitchingLoaders (/var/www/html/croudchecking/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (/var/www/html/croudchecking/node_modules/loader-runner/lib/LoaderRunner.js:165:10)\n    at /var/www/html/croudchecking/node_modules/loader-runner/lib/LoaderRunner.js:173:18\n    at loadLoader (/var/www/html/croudchecking/node_modules/loader-runner/lib/loadLoader.js:36:3)\n    at iteratePitchingLoaders (/var/www/html/croudchecking/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at runLoaders (/var/www/html/croudchecking/node_modules/loader-runner/lib/LoaderRunner.js:362:2)\n    at NormalModule.doBuild (/var/www/html/croudchecking/node_modules/webpack/lib/NormalModule.js:182:3)\n    at NormalModule.build (/var/www/html/croudchecking/node_modules/webpack/lib/NormalModule.js:275:15)\n    at Compilation.buildModule (/var/www/html/croudchecking/node_modules/webpack/lib/Compilation.js:151:10)\n    at moduleFactory.create (/var/www/html/croudchecking/node_modules/webpack/lib/Compilation.js:454:10)\n    at factory (/var/www/html/croudchecking/node_modules/webpack/lib/NormalModuleFactory.js:243:5)\n    at applyPluginsAsyncWaterfall (/var/www/html/croudchecking/node_modules/webpack/lib/NormalModuleFactory.js:94:13)\n    at /var/www/html/croudchecking/node_modules/tapable/lib/Tapable.js:268:11\n    at NormalModuleFactory.params.normalModuleFactory.plugin (/var/www/html/croudchecking/node_modules/webpack/lib/CompatibilityPlugin.js:52:5)\n    at NormalModuleFactory.applyPluginsAsyncWaterfall (/var/www/html/croudchecking/node_modules/tapable/lib/Tapable.js:272:13)\n    at resolver (/var/www/html/croudchecking/node_modules/webpack/lib/NormalModuleFactory.js:69:10)\n    at process.nextTick (/var/www/html/croudchecking/node_modules/webpack/lib/NormalModuleFactory.js:196:7)\n    at _combinedTickCallback (internal/process/next_tick.js:73:7)");
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
