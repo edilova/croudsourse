@@ -41,6 +41,9 @@
             
             {!! Form::open(['route'=>'translations.store']) !!}
                 <div><h3>Текссті дұрыста:</h3></div>
+                <script>
+                    let postContent = '{{ $post->content }}';
+                </script>
                 <div id="corrector_field"></div>
                 {!! Form::textarea('content',$post->content) !!}
                 {!! Form::hidden('post_id',$post->id) !!}
