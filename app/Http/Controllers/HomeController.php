@@ -23,6 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('welcome', ['posts'=>Post::withCount('translations')->get()]);
+        return view('welcome_react', ['posts'=>Post::withCount('translations')->get()]);
     }
 }
