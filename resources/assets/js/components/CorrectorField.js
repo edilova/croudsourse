@@ -21,15 +21,17 @@ export default class CorrectorField extends Component {
         component: Link,
       },
     ]);
-
+    let contentState = ContentState.createFromText(postContent);
+    let initialEditor = EditorState.createWithContent(contentState,decorator);
     this.state = {
-      editorState: EditorState.createEmpty(decorator),
+      editorState: initialEditor,
       showURLInput: false,
       urlValue: '',
     };
 
     this.focus = () => this.refs.editor.focus();
     this.onChange = (editorState) => {
+      console.log("Change");
       this.setState({editorState});
       var selectionState = editorState.getSelection();
       var anchorKey = selectionState.getAnchorKey();
@@ -38,11 +40,21 @@ export default class CorrectorField extends Component {
       var start = selectionState.getStartOffset();
       var end = selectionState.getEndOffset();
       var selectedText = currentContentBlock.getText().slice(start, end);
-      //console.log(selectedText);
-      this.state.selectedText = selectedText;
-      this.setState({
-        selectedText: selectedText
-      });
+      console.log(selectedText);
+      //this.state.selectedText = selectedText;
+      if (selectedText.length>0){
+        this.setState({
+          selectedText: selectedText,
+          urlValue:selectedText,
+          showURLInput:true,
+        });
+        //this._promptForLink();
+      }
+      else {
+        this.setState({
+          showURLInput:false,
+        });
+      }
     };
     this.logState = () => {
       const content = this.state.editorState.getCurrentContent();
@@ -54,10 +66,13 @@ export default class CorrectorField extends Component {
     this.confirmLink = this._confirmLink.bind(this);
     this.onLinkInputKeyDown = this._onLinkInputKeyDown.bind(this);
     this.removeLink = this._removeLink.bind(this);
+    this.saveCorrection = this._saveCorrection.bind(this);
   }
 
   _promptForLink(e) {
-    e.preventDefault();
+    console.log("Prompt for link");
+    //e.preventDefault();
+    //e.stopPropagation();
     const {editorState} = this.state;
     const selection = editorState.getSelection();
     if (!selection.isCollapsed()) {
@@ -127,11 +142,21 @@ export default class CorrectorField extends Component {
     this.setState({selectedText:e.target.value});
   }
 
+  _saveCorrection(e){
+    e.preventDefault();
+    const { editorState } = this.state;
+    let entityMap = editorState.getCurrentContent().getEntityMap();
+    console.log(entityMap);
+    console.log(convertToRaw(editorState.getCurrentContent()));
+    console.log(JSON.stringify(convertToRaw(editorState.getCurrentContent())));
+    //fetch(saveURL)
+  }
   render() {
     let urlInput;
     if (this.state.showURLInput) {
       urlInput =(
         <div style={styles.urlInputContainer}>
+          <span style={styles.selectedText}>{ this.state.selectedText }</span>
           <input
             onChange={this.onURLChange}
             ref="url"
@@ -140,7 +165,7 @@ export default class CorrectorField extends Component {
             value={this.state.urlValue}
             onKeyDown={this.onLinkInputKeyDown}
             />
-          <button onMouseDown={this.confirmLink}>
+          <button type="button" onMouseDown={this.confirmLink}>
             түзетуге жібер
           </button>
       </div>);
@@ -153,6 +178,7 @@ export default class CorrectorField extends Component {
         </div>
         <div style={styles.buttons}>
           <button
+            type="button"
             onMouseDown={this.promptForLink}
             style={{marginRight: 10}}>
             Дұрыста
@@ -164,17 +190,12 @@ export default class CorrectorField extends Component {
           <Editor
             editorState={this.state.editorState}
             onChange={this.onChange}
-            placeholder="Тексттіңізді осы жаққа енгізіңіз ... "
+            placeholder="Текстіңізді осы жаққа енгізіңіз ... "
             ref="editor"
             />
         </div>
-        <input type="text" value={this.state.selectedText} onChange={this.handleTextCorrectionChange}/>
-        <input
-          onClick={this.logState}
-          style={styles.button}
-          type="button"
-          value="Log State"
-          />
+        <button type="button" onClick={this.saveCorrection}>Сақта</button>
+        {/*<input type="text" value={this.state.selectedText} onChange={this.handleTextCorrectionChange}/>*/}
       </div>
     );
   }
@@ -223,6 +244,13 @@ const styles = {
   },
   urlInputContainer: {
     marginBottom: 10,
+    display:'flex',
+    alignItems:'center',
+  },
+  selectedText:{
+    paddingLeft:10,
+    paddingRight:10,
+    fontSize:16,
   },
   urlInput: {
     fontFamily: '\'Georgia\', serif',

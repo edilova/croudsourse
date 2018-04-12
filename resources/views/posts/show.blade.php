@@ -42,10 +42,11 @@
             {!! Form::open(['route'=>'translations.store']) !!}
                 <div><h3>Текссті дұрыста:</h3></div>
                 <script>
-                    let postContent = '{{ $post->content }}';
+                    let postContent = '{!! $post->content !!}';
+                    let saveURL = "{!! route('translate.store') !!}";
                 </script>
                 <div id="corrector_field"></div>
-                {!! Form::textarea('content',$post->content) !!}
+                <?php /*{!! Form::textarea('content',$post->content) !!} */?>
                 {!! Form::hidden('post_id',$post->id) !!}
                 <div>{!! Form::submit('Сақта') !!}</div>
             {!! Form::close() !!}
