@@ -43,7 +43,8 @@
                 <div><h3>Текссті дұрыста:</h3></div>
                 <script>
                     let postContent = '{!! $post->content !!}';
-                    let saveURL = "{!! route('translate.store') !!}";
+                    let saveURL = "{!! route('translations.store') !!}";
+                    let post_id = {!! $post->id !!};
                 </script>
                 <div id="corrector_field"></div>
                 <?php /*{!! Form::textarea('content',$post->content) !!} */?>

@@ -145,11 +145,14 @@ export default class CorrectorField extends Component {
   _saveCorrection(e){
     e.preventDefault();
     const { editorState } = this.state;
+    const myHeaders = new Headers();
     let entityMap = editorState.getCurrentContent().getEntityMap();
-    console.log(entityMap);
-    console.log(convertToRaw(editorState.getCurrentContent()));
-    console.log(JSON.stringify(convertToRaw(editorState.getCurrentContent())));
-    //fetch(saveURL)
+    let data = {post_id:post_id};
+    const requestMap = {method:'POST',headers:myHeaders,mode:'cors',cache:'default',body:JSON.stringify(data)};
+    //console.log(entityMap);
+    //console.log(convertToRaw(editorState.getCurrentContent()));
+    //console.log(JSON.stringify(convertToRaw(editorState.getCurrentContent())));
+    fetch(saveURL,requestMap).then(res=>{console.log(res);});
   }
   render() {
     let urlInput;

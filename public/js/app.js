@@ -47866,11 +47866,16 @@ var CorrectorField = function (_Component) {
       e.preventDefault();
       var editorState = this.state.editorState;
 
+      var myHeaders = new Headers();
       var entityMap = editorState.getCurrentContent().getEntityMap();
-      console.log(entityMap);
-      console.log(Object(__WEBPACK_IMPORTED_MODULE_1_draft_js__["convertToRaw"])(editorState.getCurrentContent()));
-      console.log(JSON.stringify(Object(__WEBPACK_IMPORTED_MODULE_1_draft_js__["convertToRaw"])(editorState.getCurrentContent())));
-      //fetch(saveURL)
+      var data = { post_id: post_id };
+      var requestMap = { method: 'POST', headers: myHeaders, mode: 'cors', cache: 'default', body: JSON.stringify(data) };
+      //console.log(entityMap);
+      //console.log(convertToRaw(editorState.getCurrentContent()));
+      //console.log(JSON.stringify(convertToRaw(editorState.getCurrentContent())));
+      fetch(saveURL, requestMap).then(function (res) {
+        console.log(res);
+      });
     }
   }, {
     key: 'render',
