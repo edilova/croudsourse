@@ -1,6 +1,6 @@
 //'use strict';
 import React, { Component } from 'react';
-import {convertToRaw,CompositeDecorator,ContentState,Editor,EditorState,RichUtils} from 'draft-js';
+import {convertToRaw,CompositeDecorator,ContentState,Editor,EditorState,RichUtils, Modifier} from 'draft-js';
 import { render } from 'react-dom';
 /*const {
   convertToRaw,
@@ -22,12 +22,14 @@ export default class CorrectorField extends Component {
       },
     ]);
     let contentState = ContentState.createFromText(postContent);
+    let correctContentState = ContentState.createFromText(postContent);
     let initialEditor = EditorState.createWithContent(contentState,decorator);
     this.state = {
       editorState: initialEditor,
       showURLInput: false,
       urlValue: '',
       correctContent:postContent,
+      correctContentState:correctContentState,
     };
 
     this.focus = () => this.refs.editor.focus();
@@ -103,7 +105,12 @@ export default class CorrectorField extends Component {
     const {editorState, urlValue} = this.state;
     const contentState = editorState.getCurrentContent();
 
-    /* */
+    /* 
+    const selectionState = editorState.getSelection();
+    let newContentState = Modifier.replaceText(this.state.correctContentState,selectionState,urlValue);
+    let correctContentState = newContentState;
+    let correctContent  = newContentState.getPlainText();
+    */
     const contentStateWithEntity = contentState.createEntity(
       'LINK',
       'MUTABLE',
@@ -119,6 +126,8 @@ export default class CorrectorField extends Component {
       ),
       showURLInput: false,
       urlValue: '',
+      //correctContent: correctContent,
+      //correctContentState: correctContentState,
     }, () => {
       setTimeout(() => this.refs.editor.focus(), 0);
     });
@@ -149,7 +158,7 @@ export default class CorrectorField extends Component {
     e.preventDefault();
     const { editorState } = this.state;
     const myHeaders = new Headers();
-    let entityMap = editorState.getCurrentContent().getEntityMap();
+    let blockMap = editorState.getCurrentContent().getBlockMap();
     let data = {post_id:post_id};
     const requestMap = {
       _token: csrf_token,
@@ -159,7 +168,10 @@ export default class CorrectorField extends Component {
       cache:'default',
       body:JSON.stringify(data)
     };
-    //console.log(entityMap);
+    
+    blockMap.map(function(d){
+      console.log(d);
+    });
     //console.log(convertToRaw(editorState.getCurrentContent()));
     //console.log(JSON.stringify(convertToRaw(editorState.getCurrentContent())));
     fetch(saveURL,requestMap).then(res=>{console.log(res);});

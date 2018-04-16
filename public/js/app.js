@@ -47726,12 +47726,14 @@ var CorrectorField = function (_Component) {
       component: Link
     }]);
     var contentState = __WEBPACK_IMPORTED_MODULE_1_draft_js__["ContentState"].createFromText(postContent);
+    var correctContentState = __WEBPACK_IMPORTED_MODULE_1_draft_js__["ContentState"].createFromText(postContent);
     var initialEditor = __WEBPACK_IMPORTED_MODULE_1_draft_js__["EditorState"].createWithContent(contentState, decorator);
     _this.state = {
       editorState: initialEditor,
       showURLInput: false,
       urlValue: '',
-      correctContent: postContent
+      correctContent: postContent,
+      correctContentState: correctContentState
     };
 
     _this.focus = function () {
@@ -47824,7 +47826,12 @@ var CorrectorField = function (_Component) {
 
       var contentState = editorState.getCurrentContent();
 
-      /* */
+      /* 
+      const selectionState = editorState.getSelection();
+      let newContentState = Modifier.replaceText(this.state.correctContentState,selectionState,urlValue);
+      let correctContentState = newContentState;
+      let correctContent  = newContentState.getPlainText();
+      */
       var contentStateWithEntity = contentState.createEntity('LINK', 'MUTABLE', { url: urlValue });
       var entityKey = contentStateWithEntity.getLastCreatedEntityKey();
       var newEditorState = __WEBPACK_IMPORTED_MODULE_1_draft_js__["EditorState"].set(editorState, { currentContent: contentStateWithEntity });
@@ -47832,6 +47839,8 @@ var CorrectorField = function (_Component) {
         editorState: __WEBPACK_IMPORTED_MODULE_1_draft_js__["RichUtils"].toggleLink(newEditorState, newEditorState.getSelection(), entityKey),
         showURLInput: false,
         urlValue: ''
+        //correctContent: correctContent,
+        //correctContentState: correctContentState,
       }, function () {
         setTimeout(function () {
           return _this3.refs.editor.focus();
@@ -47870,7 +47879,7 @@ var CorrectorField = function (_Component) {
       var editorState = this.state.editorState;
 
       var myHeaders = new Headers();
-      var entityMap = editorState.getCurrentContent().getEntityMap();
+      var blockMap = editorState.getCurrentContent().getBlockMap();
       var data = { post_id: post_id };
       var requestMap = {
         _token: csrf_token,
@@ -47880,7 +47889,10 @@ var CorrectorField = function (_Component) {
         cache: 'default',
         body: JSON.stringify(data)
       };
-      //console.log(entityMap);
+
+      blockMap.map(function (d) {
+        console.log(d);
+      });
       //console.log(convertToRaw(editorState.getCurrentContent()));
       //console.log(JSON.stringify(convertToRaw(editorState.getCurrentContent())));
       fetch(saveURL, requestMap).then(function (res) {
