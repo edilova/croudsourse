@@ -47730,7 +47730,8 @@ var CorrectorField = function (_Component) {
     _this.state = {
       editorState: initialEditor,
       showURLInput: false,
-      urlValue: ''
+      urlValue: '',
+      correctContent: postContent
     };
 
     _this.focus = function () {
@@ -47822,6 +47823,8 @@ var CorrectorField = function (_Component) {
           urlValue = _state.urlValue;
 
       var contentState = editorState.getCurrentContent();
+
+      /* */
       var contentStateWithEntity = contentState.createEntity('LINK', 'MUTABLE', { url: urlValue });
       var entityKey = contentStateWithEntity.getLastCreatedEntityKey();
       var newEditorState = __WEBPACK_IMPORTED_MODULE_1_draft_js__["EditorState"].set(editorState, { currentContent: contentStateWithEntity });
@@ -47869,7 +47872,14 @@ var CorrectorField = function (_Component) {
       var myHeaders = new Headers();
       var entityMap = editorState.getCurrentContent().getEntityMap();
       var data = { post_id: post_id };
-      var requestMap = { method: 'POST', headers: myHeaders, mode: 'cors', cache: 'default', body: JSON.stringify(data) };
+      var requestMap = {
+        _token: csrf_token,
+        method: 'POST',
+        headers: myHeaders,
+        mode: 'cors',
+        cache: 'default',
+        body: JSON.stringify(data)
+      };
       //console.log(entityMap);
       //console.log(convertToRaw(editorState.getCurrentContent()));
       //console.log(JSON.stringify(convertToRaw(editorState.getCurrentContent())));
@@ -47941,6 +47951,11 @@ var CorrectorField = function (_Component) {
           'button',
           { type: 'button', onClick: this.saveCorrection },
           '\u0421\u0430\u049B\u0442\u0430'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          null,
+          this.state.correctContent
         )
       );
     }

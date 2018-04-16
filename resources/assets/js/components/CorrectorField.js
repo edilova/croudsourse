@@ -27,6 +27,7 @@ export default class CorrectorField extends Component {
       editorState: initialEditor,
       showURLInput: false,
       urlValue: '',
+      correctContent:postContent,
     };
 
     this.focus = () => this.refs.editor.focus();
@@ -101,6 +102,8 @@ export default class CorrectorField extends Component {
     e.preventDefault();
     const {editorState, urlValue} = this.state;
     const contentState = editorState.getCurrentContent();
+
+    /* */
     const contentStateWithEntity = contentState.createEntity(
       'LINK',
       'MUTABLE',
@@ -148,7 +151,14 @@ export default class CorrectorField extends Component {
     const myHeaders = new Headers();
     let entityMap = editorState.getCurrentContent().getEntityMap();
     let data = {post_id:post_id};
-    const requestMap = {method:'POST',headers:myHeaders,mode:'cors',cache:'default',body:JSON.stringify(data)};
+    const requestMap = {
+      _token: csrf_token,
+      method:'POST',
+      headers:myHeaders,
+      mode:'cors',
+      cache:'default',
+      body:JSON.stringify(data)
+    };
     //console.log(entityMap);
     //console.log(convertToRaw(editorState.getCurrentContent()));
     //console.log(JSON.stringify(convertToRaw(editorState.getCurrentContent())));
@@ -198,6 +208,7 @@ export default class CorrectorField extends Component {
             />
         </div>
         <button type="button" onClick={this.saveCorrection}>Сақта</button>
+        <div>{ this.state.correctContent }</div>
         {/*<input type="text" value={this.state.selectedText} onChange={this.handleTextCorrectionChange}/>*/}
       </div>
     );

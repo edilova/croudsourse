@@ -45,6 +45,7 @@
                     let postContent = '{!! $post->content !!}';
                     let saveURL = "{!! route('translations.store') !!}";
                     let post_id = {!! $post->id !!};
+                    let csrf_token = '{{ csrf_token() }}';
                 </script>
                 <div id="corrector_field"></div>
                 <?php /*{!! Form::textarea('content',$post->content) !!} */?>
