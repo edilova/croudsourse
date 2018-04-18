@@ -47873,14 +47873,37 @@ var CorrectorField = function (_Component) {
       this.setState({ selectedText: e.target.value });
     }
   }, {
+    key: 'generateCorrectedText',
+    value: function generateCorrectedText(rawContent) {
+      var correctText = "";
+      rawContent.blocks.forEach(function (block) {
+        var text = block.text;
+        var correctBlock = text;
+        var charOffset = 0;
+        block.entityRanges.forEach(function (entity) {
+          var correctWord = rawContent.entityMap[entity.key].data.url;
+          correctBlock = correctBlock.substr(0, entity.offset + charOffset) + correctWord + correctBlock.substr(entity.offset + entity.length + charOffset);
+          //console.log(correctWord.length+" "+entity.length);
+          charOffset = charOffset + (correctWord.length - entity.length);
+          //console.log(correctBlock+charOffset);
+        });
+        correctText = correctText + correctBlock + "\n";
+      });
+      //console.log(correctText);
+      return correctText;
+    }
+  }, {
     key: '_saveCorrection',
     value: function _saveCorrection(e) {
       e.preventDefault();
       var editorState = this.state.editorState;
 
+
+      var rawContent = Object(__WEBPACK_IMPORTED_MODULE_1_draft_js__["convertToRaw"])(editorState.getCurrentContent());
+      correctedText = this.generateCorrectedText(rawContent);
       var myHeaders = new Headers();
       var blockMap = editorState.getCurrentContent().getBlockMap();
-      var data = { post_id: post_id };
+      var data = { post_id: post_id, corrected_text: correctedText, raw_content: rawContent };
       var requestMap = {
         _token: csrf_token,
         method: 'POST',
@@ -47889,12 +47912,6 @@ var CorrectorField = function (_Component) {
         cache: 'default',
         body: JSON.stringify(data)
       };
-
-      blockMap.map(function (d) {
-        console.log(d);
-      });
-      //console.log(convertToRaw(editorState.getCurrentContent()));
-      //console.log(JSON.stringify(convertToRaw(editorState.getCurrentContent())));
       fetch(saveURL, requestMap).then(function (res) {
         console.log(res);
       });

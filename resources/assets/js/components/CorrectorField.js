@@ -153,13 +153,33 @@ export default class CorrectorField extends Component {
   handleTextCorrectionChange(e){
     this.setState({selectedText:e.target.value});
   }
-
+  generateCorrectedText(rawContent){
+    let correctText = "";
+    rawContent.blocks.forEach((block)=>{
+      let text = block.text;
+      let correctBlock = text;
+      let charOffset = 0;
+      block.entityRanges.forEach((entity)=>{
+        let correctWord = rawContent.entityMap[entity.key].data.url;
+        correctBlock = correctBlock.substr(0,entity.offset+charOffset)+correctWord+correctBlock.substr(entity.offset+entity.length+charOffset);
+        //console.log(correctWord.length+" "+entity.length);
+        charOffset = charOffset + (correctWord.length-entity.length);
+        //console.log(correctBlock+charOffset);
+      });
+      correctText = correctText+correctBlock+"\n";
+    });
+    //console.log(correctText);
+    return correctText;
+  }
   _saveCorrection(e){
     e.preventDefault();
     const { editorState } = this.state;
+
+    let rawContent = convertToRaw(editorState.getCurrentContent());
+    correctedText = this.generateCorrectedText(rawContent);
     const myHeaders = new Headers();
     let blockMap = editorState.getCurrentContent().getBlockMap();
-    let data = {post_id:post_id};
+    let data = {post_id:post_id,corrected_text:correctedText,raw_content:rawContent};
     const requestMap = {
       _token: csrf_token,
       method:'POST',
@@ -168,12 +188,6 @@ export default class CorrectorField extends Component {
       cache:'default',
       body:JSON.stringify(data)
     };
-    
-    blockMap.map(function(d){
-      console.log(d);
-    });
-    //console.log(convertToRaw(editorState.getCurrentContent()));
-    //console.log(JSON.stringify(convertToRaw(editorState.getCurrentContent())));
     fetch(saveURL,requestMap).then(res=>{console.log(res);});
   }
   render() {
