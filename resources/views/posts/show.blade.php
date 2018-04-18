@@ -38,8 +38,8 @@
                 </div>
                 <div></div>
             @endforeach
-            
-            {!! Form::open(['route'=>'translations.store']) !!}
+            {{--
+            {!! Form::open(['route'=>'translations.store']) !!}--}}
                 <div><h3>Текссті дұрыста:</h3></div>
                 <script>
                     let postContent = '{!! $post->content !!}';
@@ -51,7 +51,7 @@
                 <?php /*{!! Form::textarea('content',$post->content) !!} */?>
                 {!! Form::hidden('post_id',$post->id) !!}
                 <div>{!! Form::submit('Сақта') !!}</div>
-            {!! Form::close() !!}
+            {{--{!! Form::close() !!}--}}
         </div>
     </div>
     <script src="{{ asset('js/app.js') }}"></script>

@@ -47692,6 +47692,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_draft_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_draft_js__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_dom__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_dom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_axios__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -47701,6 +47703,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 //'use strict';
+
 
 
 
@@ -47900,21 +47903,24 @@ var CorrectorField = function (_Component) {
 
 
       var rawContent = Object(__WEBPACK_IMPORTED_MODULE_1_draft_js__["convertToRaw"])(editorState.getCurrentContent());
-      correctedText = this.generateCorrectedText(rawContent);
+      var correctedText = this.generateCorrectedText(rawContent);
       var myHeaders = new Headers();
       var blockMap = editorState.getCurrentContent().getBlockMap();
-      var data = { post_id: post_id, corrected_text: correctedText, raw_content: rawContent };
+      var data = { post_id: post_id, content: correctedText, raw_content: rawContent, _token: csrf_token };
+      console.log(JSON.stringify(data));
       var requestMap = {
         _token: csrf_token,
         method: 'POST',
         headers: myHeaders,
         mode: 'cors',
         cache: 'default',
-        body: JSON.stringify(data)
+        //body:JSON.stringify(data)
+        body: 'foo=bar&lorem=ipsum'
       };
       fetch(saveURL, requestMap).then(function (res) {
         console.log(res);
       });
+      //fetch()
     }
   }, {
     key: 'render',

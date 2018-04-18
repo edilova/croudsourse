@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import {convertToRaw,CompositeDecorator,ContentState,Editor,EditorState,RichUtils, Modifier} from 'draft-js';
 import { render } from 'react-dom';
+import axios from 'axios';
 /*const {
   convertToRaw,
   CompositeDecorator,
@@ -176,19 +177,22 @@ export default class CorrectorField extends Component {
     const { editorState } = this.state;
 
     let rawContent = convertToRaw(editorState.getCurrentContent());
-    correctedText = this.generateCorrectedText(rawContent);
+    let correctedText = this.generateCorrectedText(rawContent);
     const myHeaders = new Headers();
     let blockMap = editorState.getCurrentContent().getBlockMap();
-    let data = {post_id:post_id,corrected_text:correctedText,raw_content:rawContent};
+    let data = {post_id:post_id,content:correctedText,raw_content:rawContent,_token:csrf_token};
+    console.log(JSON.stringify(data));
     const requestMap = {
       _token: csrf_token,
       method:'POST',
       headers:myHeaders,
       mode:'cors',
       cache:'default',
-      body:JSON.stringify(data)
+      //body:JSON.stringify(data)
+      body:'foo=bar&lorem=ipsum'
     };
     fetch(saveURL,requestMap).then(res=>{console.log(res);});
+    //fetch()
   }
   render() {
     let urlInput;
