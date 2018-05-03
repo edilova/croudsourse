@@ -31,7 +31,7 @@
                     <div class="col-md-9">
                         <div class="row">{{ $translation->content }}</div>
                         <div class="row pull-left">
-                                @component('components.user_info',['post'=>$post])
+                                @component('components.user_info',['post'=>$translation])
                                 @endcomponent
                         </div>
                     </div>

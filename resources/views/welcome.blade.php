@@ -3,6 +3,7 @@
 <div class="container">
     <div class="row">
         <h1>Сұрақтар</h1>
+        <a class="btn btn-primary" href="#">Шығармаңды жаз</a>
     </div>
     <div class="row">
         <div class="questions">
@@ -16,7 +17,7 @@
                         <a href="{{ route('posts.show',$post->id) }}">{{ str_limit($post->content,100) }}</a>
                     </div>
                     <div class="row">
-                        @component('components.user_info',['post'=>$post])
+                        @component('components.user_info',['item'=>$post])
                         @endcomponent
                     </div>
                 </div>

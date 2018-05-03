@@ -2,7 +2,8 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <h1>Сұрақтар</h1>
+        <h1 class="pull-left">Сұрақтар</h1>
+    <a class="btn btn-primary pull-right" href="{{ route('posts.create') }}">Шығармаңды жаз</a>
     </div>
     <div class="row">
         <div class="questions">

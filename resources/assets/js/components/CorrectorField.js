@@ -191,8 +191,12 @@ export default class CorrectorField extends Component {
       //body:JSON.stringify(data)
       body:'foo=bar&lorem=ipsum'
     };
-    fetch(saveURL,requestMap).then(res=>{console.log(res);});
+    const request = data;
+    //fetch(saveURL,requestMap).then(res=>{console.log(res);});
     //fetch()
+    axios.post(saveURL,request).then(res=>{
+      console.log(res);
+    });
   }
   render() {
     let urlInput;
