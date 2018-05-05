@@ -16,7 +16,7 @@
                     <div class="row">
                         <a href="{{ route('posts.show',$post->id) }}">{{ str_limit($post->content,100) }}</a>
                     </div>
-                    <div class="row">
+                    <div class="row pull-right">
                         @component('components.user_info',['item'=>$post])
                         @endcomponent
                     </div>

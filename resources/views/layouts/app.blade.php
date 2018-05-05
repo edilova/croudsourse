@@ -43,8 +43,8 @@
 	  <div class="container-fluid">
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-        <li class="active"><a href="{{ route('home') }}">Аудару <span class="sr-only">(current)</span></a></li>
-          <li><a href="#">Link</a></li>
+        <li class="active"><a href="{{ route('home') }}">Басты бет <span class="sr-only">(current)</span></a></li>
+          <li><a href="#">Шығарманы сақтау</a></li>
         </ul>
 
         <div class="nav navbar-right">

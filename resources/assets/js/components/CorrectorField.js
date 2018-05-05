@@ -242,7 +242,6 @@ export default class CorrectorField extends Component {
             />
         </div>
         <button type="button" onClick={this.saveCorrection}>Сақта</button>
-        <div>{ this.state.correctContent }</div>
         {/*<input type="text" value={this.state.selectedText} onChange={this.handleTextCorrectionChange}/>*/}
       </div>
     );

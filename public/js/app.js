@@ -47988,11 +47988,6 @@ var CorrectorField = function (_Component) {
           'button',
           { type: 'button', onClick: this.saveCorrection },
           '\u0421\u0430\u049B\u0442\u0430'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'div',
-          null,
-          this.state.correctContent
         )
       );
     }

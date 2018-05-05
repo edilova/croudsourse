@@ -65,7 +65,8 @@ class PostController extends AppBaseController
 
         Flash::success('Post saved successfully.');
 
-        return redirect(route('posts.index'));
+        //return redirect(route('posts.index'));
+        return redirect(route('posts.show',$post->id));
     }
 
     /**

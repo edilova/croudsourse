@@ -40,7 +40,7 @@
             @endforeach
             {{--
             {!! Form::open(['route'=>'translations.store']) !!}--}}
-                <div><h3>Текссті дұрыста:</h3></div>
+                <div><h3>Текстті дұрыста:</h3></div>
                 <script>
                     let postContent = '{!! $post->content !!}';
                     let saveURL = "{!! route('translations.store') !!}";
@@ -49,8 +49,8 @@
                 </script>
                 <div id="corrector_field"></div>
                 <?php /*{!! Form::textarea('content',$post->content) !!} */?>
-                {!! Form::hidden('post_id',$post->id) !!}
-                <div>{!! Form::submit('Сақта') !!}</div>
+                {{--{!! Form::hidden('post_id',$post->id) !!}--}}
+                {{--<div>{!! Form::submit('Сақта') !!}</div>--}}
             {{--{!! Form::close() !!}--}}
         </div>
     </div>
