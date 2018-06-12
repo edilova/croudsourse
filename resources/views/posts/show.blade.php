@@ -7,9 +7,9 @@
         </h1>
     </section>
     <div class="content">
-        <div class="box box-primary">
+        <div class="box box-primary" data-intro='Hello step one!' data-step='1'>
             <div class="box-body">
-                <div class="row" style="padding-left: 20px">
+                <div class="row" style="padding-left: 20px" data-intro='Hello step one!' data-step='2'>
                         @include('flash::message')
                         <div class="post">
                                     <div class="content">
@@ -55,4 +55,29 @@
         </div>
     </div>
     <script src="{{ asset('js/app.js') }}"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/intro.min.js"></script>
+    <script type="text/javascript">
+        var intro = introJs();
+            // modal.style.display = "none";
+
+            intro.setOptions({
+                steps: [
+                    {
+                        element: "#draftTips1",
+                        //   intro: "This is a dropdown",
+                        intro:'draftTips1',
+
+                    },
+                    {
+                        element: "#draftTips2",
+                        intro: "draftTips1",
+                    }
+                ]
+            });
+
+            intro.setOption().start();
+       
+    </script>
 @endsection

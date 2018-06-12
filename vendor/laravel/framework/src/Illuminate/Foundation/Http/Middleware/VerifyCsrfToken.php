@@ -122,10 +122,6 @@ class VerifyCsrfToken
     {
         $token = $this->getTokenFromRequest($request);
 
-        echo $request->session()->token();
-        echo "<br/>";
-        echo $token;
-
         return is_string($request->session()->token()) &&
                is_string($token) &&
                hash_equals($request->session()->token(), $token);
@@ -139,7 +135,6 @@ class VerifyCsrfToken
      */
     protected function getTokenFromRequest($request)
     {
-        print_r($request->all());
         $token = $request->input('_token') ?: $request->header('X-CSRF-TOKEN');
 
         if (! $token && $header = $request->header('X-XSRF-TOKEN')) {

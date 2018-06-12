@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
+    'App\\CoreExtensions\\SessionGuardExtended' => $baseDir . '/app/CoreExtensions/SessionGuardExtended.php',
     'App\\DataTables\\UserDataTable' => $baseDir . '/app/DataTables/UserDataTable.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\AppBaseController' => $baseDir . '/app/Http/Controllers/AppBaseController.php',

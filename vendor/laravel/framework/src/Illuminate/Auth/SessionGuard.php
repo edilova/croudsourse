@@ -42,8 +42,6 @@ class SessionGuard implements StatefulGuard, SupportsBasicAuth
      */
     protected $viaRemember = false;
 
-    protected $viaAnon = false;
-
     /**
      * The session used by the guard.
      *
@@ -85,8 +83,6 @@ class SessionGuard implements StatefulGuard, SupportsBasicAuth
      * @var bool
      */
     protected $recallAttempted = false;
-
-    protected $recallAnonAttempted = false;
 
     /**
      * Create a new authentication guard.
@@ -152,49 +148,8 @@ class SessionGuard implements StatefulGuard, SupportsBasicAuth
             }
         }
 
-        // If the user is not registered set him as anonymous user 
-        //echo "SESSION GUARD.php";
-        if ( is_null($this->user)){
-            $this->user = $this->provider->createModel();
-            $this->user->anonymous = true;
-            $this->user->save();
-            $role_user = \App\Role::where('name','user')->first();
-            $this->user->roles()->attach($role_user);
-            $this->updateSession($this->user->getAuthIdentifier());
-            $this->fireLoginEvent($this->user,true);
-            $this->ensureRememberTokenIsSet($this->user);
-            $this->queueRecallerCookie($this->user);
-        }
-
         return $this->user;
     }
-    protected function anon_recaller()
-    {
-        if (is_null($this->request)) {
-            return;
-        }
-
-        if ($recaller = $this->request->cookies->get($this->getAnonRecallerName())) {
-            return new Recaller($recaller);
-        }
-    }
-    protected function anonUserFromRecaller($recaller){
-        if (! $recaller->valid() || $this->recallAnonAttempted) {
-            return;
-        }
-        // If the user is null, but we decrypt a "recaller" cookie we can attempt to
-        // pull the user data on that cookie which serves as a remember cookie on
-        // the application. Once we have a user we can return it to the caller.
-        $this->recallAnonAttempted = true;
-
-        $this->viaAnon = ! is_null($user = $this->provider->retrieveByAnonToken(
-            $recaller->id(), $recaller->token()
-        ));
-
-        return $user;
-    }
-
-
 
     /**
      * Pull a user from the repository by its "remember me" cookie token.
@@ -676,11 +631,6 @@ class SessionGuard implements StatefulGuard, SupportsBasicAuth
     public function getRecallerName()
     {
         return 'remember_'.$this->name.'_'.sha1(static::class);
-    }
-
-    public function getAnonRecallerName()
-    {
-        return 'anon_'.$this->name.'_'.sha1(static::class);
     }
 
     /**

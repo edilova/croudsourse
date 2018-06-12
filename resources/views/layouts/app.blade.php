@@ -28,6 +28,16 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
+    <!-- introJS -->
+    <link href="/resources/assets/sass/introcss.css" rel="stylesheet">
+
+
+            <!-- Styles -->
+    <style type="text/css">
+
+    </style>
+
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -52,7 +62,7 @@
                 @if (Auth::user()->anonymous)
                     Аноним # {{ Auth::user()->id }}
                     <a href="{{ route('login') }}">Системаға кір</a> | 
-                    <a href="{{ route('register') }}">Тіркел</a>
+                    <a id="clientTour1" href="{{ route('register') }}">Тіркел</a>
                 @else
                     {{ Auth::user()->name }}
                     <a href="{{ route('logout') }}">Шығу</a>
@@ -65,9 +75,13 @@
       </div>
 	  </div>
   </nav>
-  <div class="container">
+<div class="container">
     @yield('content')
   </div>
+
+
+
+
       <!-- jQuery 3.1.1 -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

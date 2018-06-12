@@ -73,21 +73,6 @@ class EloquentUserProvider implements UserProvider
         return $rememberToken && hash_equals($rememberToken, $token) ? $model : null;
     }
 
-    public function retrieveByAnonToken($identifier, $token)
-    {
-        $model = $this->createModel();
-
-        $model = $model->where("anonymous_token", $identifier)->first();
-
-        if (! $model) {
-            return null;
-        }
-
-        $rememberToken = $model->getRememberToken();
-
-        return $rememberToken && hash_equals($rememberToken, $token) ? $model : null;
-    }
-
     /**
      * Update the "remember me" token for the given user in storage.
      *

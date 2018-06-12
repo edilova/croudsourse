@@ -124,8 +124,7 @@ abstract class DataTable implements DataTableButtons
 
             return app()->call([$this, $action]);
         }
-        //print_r($this->dataTableVariable);
-        //die();
+
         return view($view, $data, $mergeData)->with($this->dataTableVariable, $this->getHtmlBuilder());
     }
 
