@@ -82,60 +82,59 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
-        function startClientTour(){
-            var intro = introJs();
-            modal.style.display = "none";
+     
+function startClientTour(){
+    var intro = introJs();
+    modal.style.display = "none";
 
-            intro.setOptions({
-                steps: [
-                   {
-                        element: "#clientTour1",
-                        //   intro: "This is a dropdown",
-                        intro:'Тіркелiнiз <hr><p><b>The tutorial video as shown below:<b></p><iframe class="abcd" src="https://www.youtube.com/embed/EU7PRmCpx-0" frameborder="0" ></iframe>',
+    intro.setOptions({
+        steps: [
+            {
+                element: "#clientTour1",
+                //   intro: "This is a dropdown",
+                intro:'Тіркелiнiз <hr><p><b>The tutorial video as shown below:<b></p><iframe class="abcd" src="https://www.youtube.com/embed/EU7PRmCpx-0" frameborder="0" ></iframe>',
 
-                    },
-                    {
-                        element: "#clientTour2",
-                        intro: 'Шығарманызды жазу ушин бул жерге кiрiнiз',
-                        // position: 'left'
-                    }
-                ]                 
-            });
+            },
+            {
+                element: "#clientTour2",
+                intro: 'Шығарманызды жазу ушин бул жерге кiрiнiз',
+                // position: 'left'
+            }
+        ]                 
+    });
 
-            intro.setOption('doneLabel', 'Next page').start().oncomplete(function() {
-                window.location.href = 'posts/create?multipage=true';
-            });
+    intro.setOption('doneLabel', 'Next page').start().oncomplete(function() {
+        window.location.href = 'posts/create?multipage=true';
+    });
                     
-        };
+};
 
-         function startDevelopTour(){
-            var intro = introJs();
-            modal.style.display = "none";
 
-            intro.setOptions({
-                steps: [
-                    {
-                        element: "#devTour1",
-                        //   intro: "This is a dropdown",
-                        intro:'Тузелеу жумысы кажет сурактар',
+function startDevelopTour(){
+    var intro = introJs();
+    modal.style.display = "none";
 
-                    },
-                    {
-                        element: "#devTour2",
-                        intro: "Тузелеу бастау ушин басыныз",
-                    }
-                ]
-            });
+    intro.setOptions({
+        steps: [
+            {
+                element: "#devTour1",
+                //   intro: "This is a dropdown",
+                intro:'Тузелеу жумысы кажет сурактар',
 
-            intro.setOption().start();
-            // intro.setOption('doneLabel', 'Next page').start().oncomplete(function() {
-            //     window.location.href = '{{ route('posts.show',$post->id) }}?multipage=true';
-            // });
-        };
+            },
+            {
+                element: "#devTour2",
+                intro: "Тузелеу бастау ушин басыныз",
+            }
+        ]
+    });
 
-        // $('#info').click(function () {
-        //         startIntro();
-        // })
+    
+    intro.setOption('doneLabel', 'Next page').start().oncomplete(function() {
+        window.location.href = 'posts/1}?multipage=true';
+    });
+           
+};
     </script>
 
 @endsection

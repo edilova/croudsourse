@@ -7,12 +7,12 @@
         </h1>
     </section>
     <div class="content">
-        <div class="box box-primary" data-intro='Hello step one!' data-step='1'>
+        <div class="box box-primary">
             <div class="box-body">
-                <div class="row" style="padding-left: 20px" data-intro='Hello step one!' data-step='2'>
+                <div class="row" style="padding-left: 20px">
                         @include('flash::message')
                         <div class="post">
-                                    <div class="content">
+                                    <div class="content" id="content">
                                         <p>{!! $post->content !!}</p>
                                     </div>
                                     @component('components.user_info',['post'=>$post])
@@ -50,7 +50,8 @@
                 <div id="corrector_field"></div>
                 <?php /*{!! Form::textarea('content',$post->content) !!} */?>
                 {{--{!! Form::hidden('post_id',$post->id) !!}--}}
-                {{--<div>{!! Form::submit('Сақта') !!}</div>--}}
+                {{--<div
+                    >{!! Form::submit('Сақта') !!}</div>--}}
             {{--{!! Form::close() !!}--}}
         </div>
     </div>
@@ -59,25 +60,45 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/intro.min.js"></script>
     <script type="text/javascript">
+        // var intro = introJs();
+        //     // modal.style.display = "none";
+
+        //     intro.setOptions({
+        //         steps: [
+        //             {
+        //                 element: "#corrector_field",
+        //                 //   intro: "This is a dropdown",
+        //                 intro:'draftTips1',
+
+        //             },
+        //             {
+        //                 element: "#draftTips2",
+        //                 intro: "draftTips1",
+        //             }
+        //         ]
+        //     });
+
+        //     intro.setOption().start();
+       
+       if (RegExp('multipage', 'gi').test(window.location.search)) {
         var intro = introJs();
-            // modal.style.display = "none";
 
             intro.setOptions({
                 steps: [
-                    {
-                        element: "#draftTips1",
+                   {
+                        element: "#content",
                         //   intro: "This is a dropdown",
-                        intro:'draftTips1',
+                        intro:'Шығарманың мәтіні',
 
                     },
                     {
-                        element: "#draftTips2",
-                        intro: "draftTips1",
+                        element: "#corrector_field",
+                        intro: 'Шығарманың мәтінің тузелеу ушiн мәтінді выделите',
+                        // position: 'left'
                     }
-                ]
+                ]                 
             });
-
-            intro.setOption().start();
-       
+            intro.start()
+      }
     </script>
 @endsection
